@@ -72,7 +72,6 @@ namespace WebPayment.Controllers
 
 			if (uploads != null)
 			{
-				//Path.GetFileName(uploads.FileName);
 				string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Files\\" + Path.GetFileNameWithoutExtension(uploads.FileName));
 			
 				uploads.SaveAs(FilePath);
@@ -86,8 +85,6 @@ namespace WebPayment.Controllers
 			return RedirectToAction("ListNP", pm.listP);
 		}
 
-
-		/////////////////////////////////////////////////////////////
 		public ActionResult ListF(DateTime? Date, string Type)
 		{
 			var f = pm.Form.ToList();

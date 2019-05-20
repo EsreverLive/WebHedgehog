@@ -8,7 +8,7 @@ namespace WebPayment.Models
 {
 	public class PaymentContext : DbContext
 	{
-	
+
 		public DbSet<Forms> Form { get; set; }
 		public DbSet<Pos> Position { get; set; }
 
@@ -16,7 +16,6 @@ namespace WebPayment.Models
 		public List<Pos> listP = new List<Pos>();
 
 		public static int idF;
-
 
 		public Forms GetForms(int id)
 		{
@@ -27,11 +26,5 @@ namespace WebPayment.Models
 		{
 			return listP.FindAll(x => x.IdF == id);
 		}
-
-		//public int GetMaxId()
-		//{
-		//	return Form.Aggregate((a, b) => a.Id < b.Id ? b : a).Id;
-		//}
 	}
-
 }
