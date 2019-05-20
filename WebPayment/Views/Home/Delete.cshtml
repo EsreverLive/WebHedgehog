@@ -1,0 +1,69 @@
+﻿@model WebPayment.Models.Pos
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Удаление</title>
+	<link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+	<link href="~/Content/bootstrap.css" rel="stylesheet" />
+	<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+	<style>
+		.btn a {
+			color: white;
+			text-decoration: none;
+		}
+
+		body {
+			background-color: #F1F1F1;
+		}
+	</style>
+</head>
+<body>
+    <h3>Вы действительно хотите удалить эту позицию?</h3>
+    <div>
+        <h4>Удаление</h4>
+        <hr />
+		<dl class="dl-horizontal">
+			<dt>
+				<label>Заявленная сумма</label>
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Sum)
+			</dd>
+
+			<dt>
+				<label>Комментарий</label>
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Comment)
+			</dd>
+
+			<dt>
+				<label>Вложенный файл</label>
+			</dt>
+
+			<dd>				
+				@Html.DisplayFor(model => model.Files)
+			</dd>
+
+		</dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Удалить" class="btn btn-default" /> |
+                @Html.ActionLink("Отмена", "ListP")
+            </div>
+        }
+    </div>
+</body>
+</html>

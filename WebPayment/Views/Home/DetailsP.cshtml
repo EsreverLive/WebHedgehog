@@ -1,0 +1,66 @@
+﻿@model WebPayment.Models.Pos
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Подробно</title>
+	<link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+	<link href="~/Content/bootstrap.css" rel="stylesheet" />
+	<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+	<style>
+		.btn a {
+			color: white;
+			text-decoration: none;
+		}
+
+		body {
+			background-color: #F1F1F1;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<h4>Просмотр позиции</h4>
+		<hr />
+		<dl class="dl-horizontal">
+
+			<dt>
+				<label>Заявленная сумма</label>
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Sum)
+			</dd>
+
+			<dt>
+				<label>Комментарий</label>
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Comment)
+			</dd>
+
+			<dt>
+				<label>Вложенный файл</label>
+			</dt>
+
+			<dd>
+				@if (Model.Files != null)
+				{
+					@Html.ActionLink(Model.Files, "Open", new { file = Model.Files, id = Model.Id })
+				}
+			</dd>
+
+		</dl>
+	</div>
+	<p>
+		@Html.ActionLink("Вернуться к списку", "ListP")
+	</p>
+</body>
+</html>

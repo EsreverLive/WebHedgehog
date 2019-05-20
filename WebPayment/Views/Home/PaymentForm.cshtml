@@ -1,0 +1,68 @@
+﻿@model WebPayment.Models.Forms
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>PaymentForm</title>
+	<link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+	<link href="~/Content/bootstrap.css" rel="stylesheet" />
+	<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+	<style>
+		.btn a {
+			color: white;
+			text-decoration: none;
+		}
+
+		body {
+			background-color: #F1F1F1;
+		}
+	</style>
+</head>
+<body>
+	<div class="panel-success">
+		<div class="panel-heading text-center">
+			<h4>Форма создания заявки</h4>
+		</div>
+		<div class="panel-body">
+			@using (Html.BeginForm())
+			{
+				@Html.ValidationSummary()
+				<div class="form-group">
+					<label>Номер заявки: @ViewBag.id</label>
+					@Html.Hidden("Id")
+				</div>
+				<div class="form-group">
+					<label>Дата: @DateTime.Today.ToShortDateString()</label>
+					@Html.Hidden("Date", DateTime.Today.ToShortDateString())
+				</div>
+				<div class="form-group">
+					<label>ФИО:</label>
+					@Html.TextBoxFor(x => x.FIO, new { @class = "form-control" })
+				</div>
+				<div class="form-group">
+					<label>Тип:</label>
+					@Html.DropDownListFor(x => x.Type, new[] {
+							new SelectListItem() { Text = "тип1"},
+							new SelectListItem() { Text = "тип2"},
+							new SelectListItem() { Text = "тип3"}
+						}, "Выберите вариант", new { @class = "form-control" })
+				</div>
+				<div class="form-group">
+					<label>Общая сумма:</label>
+					<p>@Html.TextBoxFor(x => x.Sum, new { @class = "form-control" })</p>
+				</div>
+				<div class="text-center">
+					<input type="submit" value="Создать Форму" />
+				</div>
+			}
+			@Html.ActionLink("Вернуться на главную", "Index")
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebPayment.Models.Pos>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Список позиций</title>
+	<link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+	<link href="~/Content/bootstrap.css" rel="stylesheet" />
+	<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+	<style>
+		.btn a {
+			color: white;
+			text-decoration: none;
+		}
+
+		body {
+			background-color: #F1F1F1;
+		}
+	</style>
+</head>
+<body>
+	<h2>Список позиций для заявки № @ViewBag.id</h2>
+	<p>
+		@Html.ActionLink("Создать", "Create")
+	</p>
+	<table class="table">
+		<tr>
+			<th>
+				<label>Заявленная сумма</label>
+			</th>
+			<th>
+				<label>Комментарий</label>
+			</th>
+			<th>
+				<label>Вложенный файл</label>
+			</th>
+		</tr>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Sum)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Comment)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Files)
+				</td>
+				<td>
+					@Html.ActionLink("Подробнее", "DetailsP", new { id = item.Id }) |
+					@Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+				</td>
+			</tr>
+		}
+		@Html.ActionLink("Вернуться к заявкам", "ListF")
+	</table>
+</body>
+</html>
